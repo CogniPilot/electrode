@@ -28,6 +28,7 @@ install(DIRECTORY launch config DESTINATION share/${PROJECT_NAME})
 install(PROGRAMS
   scripts/joy_to_input_f310.py
   scripts/joy_to_input_ps4.py
+  scripts/joy_to_input_xboxone.py
   scripts/rviz_model.py
   DESTINATION lib/${PROJECT_NAME}
 )
