@@ -64,7 +64,9 @@ axes_map= {
     Axes.RIGHT_STICK_UP: (Channel.RIGHT_STICK_UP, 1),
     Axes.LEFT_STICK_UP: (Channel.LEFT_STICK_UP, 1),
     Axes.LEFT_STICK_LEFT: (Channel.LEFT_STICK_RIGHT, -1),
-    Axes.DPAD_LEFT: (Channel.VRA_CW, -1)
+    Axes.DPAD_LEFT: (Channel.VRA_CW, -1),
+    Axes.DPAD_UP: (Channel.VRB_CCW, -1)
+
 }
 
 class JoyToInput(Node):
@@ -94,6 +96,7 @@ class JoyToInput(Node):
         self.msg.channel[Channel.SWC_DOWN] = SwitchPosUp;
         self.msg.channel[Channel.SWD_DOWN] = SwitchPosUp;
         self.msg.channel[Channel.VRA_CW] = 0;
+        self.msg.channel[Channel.VRB_CCW] = 0;
 
     def listener_callback(self, msg_joy):
 
