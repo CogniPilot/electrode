@@ -17,25 +17,14 @@ ARGUMENTS = [
         description='use with simulation'
     ),
 
-    DeclareLaunchArgument('capabilities',
-        default_value='[clientPublish,services,connectionGraph,assets]',
-        description='capabilities for foxglove'
-    ),
-
     DeclareLaunchArgument('rviz2',
         default_value='true',
         choices=['true', 'false'],
         description='use rviz2 for gui.'
     ),
 
-    DeclareLaunchArgument('foxglove',
-        default_value='false',
-        choices=['true', 'false'],
-        description='use foxglove for gui.'
-    ),
-
     DeclareLaunchArgument('joy',
-        default_value='false',
+        default_value='true',
         choices=['true', 'false'],
         description='use joystick'
     ),
@@ -55,21 +44,6 @@ ARGUMENTS = [
         default_value=['b3rb'],
         description='vehicle'
     ),
-
-    DeclareLaunchArgument('topic_whitelist',
-        default_value=['["/cerebri/in/bezier_trajectory", "/camera/image_raw/compressed","/camera/camera_info","/cerebri/out/status","/cerebri/out/nav_sat_fix","/global_costmap/costmap","/map","global_costmap/published_footprint","/plan","/robot_description","/tf"]'],
-        description='topic_whitelist for foxglove'
-    ),
-
-    DeclareLaunchArgument('service_whitelist',
-        default_value=['[""]'],
-        description='service_whitelist for foxglove'
-    ),
-
-    DeclareLaunchArgument('param_whitelist',
-        default_value=['[""]'],
-        description='param_whitelist for foxglove'
-    )
 ]
 
 def generate_launch_description():
@@ -111,30 +85,8 @@ def generate_launch_description():
     )
 
 
-    foxglove_websockets = IncludeLaunchDescription(
-        XMLLaunchDescriptionSource([PathJoinSubstitution(
-            [get_package_share_directory('foxglove_bridge'), 'launch', 'foxglove_bridge_launch.xml'])]),
-        condition=IfCondition(AndSubstitution(AndSubstitution(LaunchConfiguration('foxglove'),LaunchConfiguration('sim')),NotSubstitution(LaunchConfiguration('rviz2')))),
-        launch_arguments=[('capabilities', LaunchConfiguration('capabilities')),
-                        ('topic_whitelist', LaunchConfiguration('topic_whitelist')),
-                        ('service_whitelist', LaunchConfiguration('service_whitelist')),
-                        ('param_whitelist', LaunchConfiguration('param_whitelist')),
-                        ('use_sim_time', LaunchConfiguration('sim'))])
-
-    foxglove_studio = ExecuteProcess(
-            cmd = [f"foxglove-studio"],
-            name='foxglove-studio',
-            condition=IfCondition(AndSubstitution(LaunchConfiguration('foxglove'),NotSubstitution(LaunchConfiguration('rviz2')))),
-            output='log',
-            sigterm_timeout='1',
-            sigkill_timeout='1',
-            on_exit=Shutdown()
-            )
-
     return LaunchDescription(ARGUMENTS + [
         joy,
         joy_to_input,
         rviz_node,
-        foxglove_websockets,
-        foxglove_studio,
     ])
