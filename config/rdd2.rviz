@@ -6,7 +6,7 @@ Panels:
       Expanded:
         - /TF1/Tree1
       Splitter Ratio: 0.5833333134651184
-    Tree Height: 862
+    Tree Height: 605
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -24,6 +24,79 @@ Panels:
     Name: Navigation 2
   - Class: rdd2_rviz_plugins/RDD2Panel
     Name: RDD2Panel
+  - Class: electrode::HUDPanel
+    Name: HUDPanel
+    odometry_topic: /cerebri/out/odometry
+  - Class: electrode::JoyPanel
+    Name: JoyPanel
+    arm_button_index: 7
+    aux_color_0: "#26a269"
+    aux_color_1: "#a51d2d"
+    aux_color_2: "#1a5fb4"
+    aux_color_3: "#e5a50a"
+    aux_color_4: "#77767b"
+    aux_color_5: "#5e5c64"
+    aux_color_6: "#9141ac"
+    aux_color_7: "#4488ff"
+    aux_color_8: "#4488ff"
+    aux_index_0: 0
+    aux_index_1: 1
+    aux_index_2: 2
+    aux_index_3: 3
+    aux_index_4: 4
+    aux_index_5: 5
+    aux_index_6: 8
+    aux_index_7: -1
+    aux_index_8: -1
+    aux_name_0: Attitude
+    aux_name_1: Velocity
+    aux_name_2: Bezier
+    aux_name_3: Calibration
+    aux_name_4: Src Input
+    aux_name_5: Src Ethernet
+    aux_name_6: Att Rate
+    aux_name_7: Btn 7
+    aux_name_8: Btn 8
+    axis0_index: 0
+    axis0_invert: true
+    axis0_name: Yaw
+    axis0_scale: 1
+    axis0_spring: true
+    axis0_trim: 0
+    axis1_index: 1
+    axis1_invert: false
+    axis1_name: Throttle
+    axis1_scale: 1
+    axis1_spring: false
+    axis1_trim: 0
+    axis2_index: 3
+    axis2_invert: true
+    axis2_name: Roll
+    axis2_scale: 1
+    axis2_spring: true
+    axis2_trim: 0
+    axis3_index: 4
+    axis3_invert: false
+    axis3_name: Pitch
+    axis3_scale: 1
+    axis3_spring: true
+    axis3_trim: 0
+    axis4_index: 2
+    axis4_invert: false
+    axis4_name: Axis 4
+    axis4_scale: 1
+    axis5_index: 5
+    axis5_invert: false
+    axis5_name: Axis 5
+    axis5_scale: 1
+    disarm_button_index: 6
+    joy_topic: /joy
+    preset_name: RDD2
+    show_arming: true
+  - Class: electrode::VideoPanel
+    Name: VideoPanel
+    custom_uri: ""
+    source_index: 0
 Visualization Manager:
   Class: ""
   Displays:
@@ -96,6 +169,8 @@ Visualization Manager:
       Visual Enabled: true
     - Class: rviz_default_plugins/TF
       Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: false
@@ -192,7 +267,6 @@ Visualization Manager:
       Topic:
         Depth: 5
         Durability Policy: Volatile
-        Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Best Effort
         Value: mobile_base/sensors/bumper_pointcloud
@@ -200,6 +274,8 @@ Visualization Manager:
       Use rainbow: true
       Value: true
     - Alpha: 1
+      Binary representation: false
+      Binary threshold: 100
       Class: rviz_default_plugins/Map
       Color Scheme: map
       Draw Behind: true
@@ -239,6 +315,8 @@ Visualization Manager:
     - Class: rviz_common/Group
       Displays:
         - Alpha: 0.30000001192092896
+          Binary representation: false
+          Binary threshold: 100
           Class: rviz_default_plugins/Map
           Color Scheme: costmap
           Draw Behind: false
@@ -260,6 +338,8 @@ Visualization Manager:
           Use Timestamp: false
           Value: true
         - Alpha: 0.30000001192092896
+          Binary representation: false
+          Binary threshold: 100
           Class: rviz_default_plugins/Map
           Color Scheme: costmap
           Draw Behind: false
@@ -335,7 +415,6 @@ Visualization Manager:
           Topic:
             Depth: 5
             Durability Policy: Volatile
-            Filter size: 10
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: global_costmap/voxel_marked_cloud
@@ -360,6 +439,8 @@ Visualization Manager:
     - Class: rviz_common/Group
       Displays:
         - Alpha: 0.699999988079071
+          Binary representation: false
+          Binary threshold: 100
           Class: rviz_default_plugins/Map
           Color Scheme: costmap
           Draw Behind: false
@@ -460,7 +541,6 @@ Visualization Manager:
           Topic:
             Depth: 5
             Durability Policy: Volatile
-            Filter size: 10
             History Policy: Keep Last
             Reliability Policy: Reliable
             Value: local_costmap/voxel_marked_cloud
@@ -602,23 +682,29 @@ Visualization Manager:
     Saved: ~
 Window Geometry:
   Displays:
-    collapsed: true
-  Height: 1016
-  Hide Left Dock: true
+    collapsed: false
+  HUDPanel:
+    collapsed: false
+  Height: 2523
+  Hide Left Dock: false
   Hide Right Dock: false
   Image:
     collapsed: false
+  JoyPanel:
+    collapsed: false
   Navigation 2:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001900000039cfc020000000bfb0000001200530065006c0065006300740069006f006e000000003e000000e70000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073000000003e0000039c000000ca00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb00000018004e0061007600690067006100740069006f006e00200032000000003e000003ad0000014400fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002ed0000009c0000000000000000fb0000000c00430061006d006500720061000000033e000000b8000000000000000000000001000002a10000039cfc0200000007fb000000140052004400440032002000500061006e0065006c010000003e000001a40000000000000000fb0000000a00560069006500770073000000003e000000dd000000a600fffffffb00000012005200440044003200500061006e0065006c010000003e000001c7000000e000fffffffb0000000a0049006d006100670065000000017e0000025c0000000000000000fb0000000a0049006d006100670065010000020b000001cf0000002800fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b20000000000000000000000020000078000000156fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004930000039c00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001cc000008a5fc020000000cfb0000001200530065006c0065006300740069006f006e000000003e000000e70000005d00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007301000001170000029d000000cc00fffffffb000000140056006900640065006f00500061006e0065006c01000003ba00000602000001c300fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb00000018004e0061007600690067006100740069006f006e00200032000000003e000003ad000001f800fffffffb0000001e005200650061006c00730065006e0073006500430061006d00650072006100000002ed0000009c0000000000000000fb0000000c00430061006d006500720061000000033e000000b8000000000000000000000001000002a1000008a5fc0200000008fb0000001000480055004400500061006e0065006c0100000117000002d60000012f00fffffffb00000010004a006f007900500061006e0065006c01000003f3000005c90000027500fffffffb000000140052004400440032002000500061006e0065006c010000003e000001a40000000000000000fb0000000a00560069006500770073000000003e000000dd000000a900fffffffb0000000a0049006d006100670065000000017e0000025c0000001700fffffffb0000000a0049006d006100670065010000020b000001cf0000000000000000fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b2000000000000000000000002000005a0000000d2fc0100000002fb00000012005200440044003200500061006e0065006c0100000000000005a0000001f100fffffffb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004420000003efc0100000002fb0000000800540069006d00650100000000000004420000000000000000fb0000000800540069006d0065010000000000000450000000000000000000000127000008a500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RDD2Panel:
     collapsed: false
   Selection:
     collapsed: false
   Tool Properties:
     collapsed: false
+  VideoPanel:
+    collapsed: false
   Views:
     collapsed: false
-  Width: 1850
-  X: 70
-  Y: 27
+  Width: 1440
+  X: 4000
+  Y: 0
