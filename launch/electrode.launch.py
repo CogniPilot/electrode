@@ -30,8 +30,8 @@ ARGUMENTS = [
     ),
 
     DeclareLaunchArgument('controller',
-        default_value='f310',
-        choices=['f310', 'ps4'],
+        default_value='xboxone',
+        choices=['xboxone', 'f310', 'ps4'],
         description='which controller you are using'
     ),
 
