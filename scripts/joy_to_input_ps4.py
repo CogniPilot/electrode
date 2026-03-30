@@ -102,8 +102,7 @@ class JoyToInput(Node):
                 continue
             try:
                 b = Button(i)
-            except KeyError as e:
-                print(e)
+            except ValueError:
                 continue
             print('pressed', b)
             ch_list = button_map[b]
@@ -114,8 +113,7 @@ class JoyToInput(Node):
         for i in range(len(msg_joy.axes)):
             try:
                 ax = Axes(i)
-            except KeyError as e:
-                print(e)
+            except ValueError:
                 continue
             if ax in axes_map.keys():
                 ch, scale = axes_map[ax]

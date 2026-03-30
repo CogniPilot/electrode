@@ -29,6 +29,12 @@ ARGUMENTS = [
         description='use joystick'
     ),
 
+    DeclareLaunchArgument('virtual_joy',
+        default_value='false',
+        choices=['true', 'false'],
+        description='use virtual joystick from rviz panel (disables physical joy node)'
+    ),
+
     DeclareLaunchArgument('controller',
         default_value='f310',
         choices=['f310', 'ps4'],
@@ -52,7 +58,10 @@ def generate_launch_description():
         package='joy',
         output='log',
         executable='joy_node',
-        condition=IfCondition(LaunchConfiguration('joy')),
+        condition=IfCondition(AndSubstitution(
+            LaunchConfiguration('joy'),
+            NotSubstitution(LaunchConfiguration('virtual_joy'))
+        )),
         arguments=['--ros-args', '--log-level', LaunchConfiguration('log_level')],
         parameters=[
             {'use_sim_time': LaunchConfiguration('sim')},
